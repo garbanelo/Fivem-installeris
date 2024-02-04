@@ -5,6 +5,7 @@ bold="\e[1m"
 reset="\e[0m"
 
 
+
 runtime_link=$1
 
 source <(curl -s https://raw.githubusercontent.com/JulianGransee/BashSelect.sh/main/BashSelect.sh)
@@ -33,9 +34,9 @@ runCommand(){
 
 source <(curl -s https://raw.githubusercontent.com/JulianGransee/BashSelect.sh/main/BashSelect.sh)
 
-status "Install MariaDB/MySQL and phpmyadmin"
+status "Irasyti MariaDB/MySQL and phpmyadmin"
 
-export OPTIONS=("yes" "no")
+export OPTIONS=("Taip" "Ne")
 
 bashSelect
 
@@ -125,7 +126,7 @@ fi
 
 
 status "Select deployment type"
-export OPTIONS=("Install template via TxAdmin" "Use the cfx-server-data")
+export OPTIONS=("Irasyti TX admino template" "Naudoti cfx-server-data")
 bashSelect
 deployType=$( echo $? )
 
