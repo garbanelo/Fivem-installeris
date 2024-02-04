@@ -8,7 +8,7 @@ reset="\e[0m"
 
 runtime_link=$1
 
-source <(curl -s https://raw.githubusercontent.com/JulianGransee/BashSelect.sh/main/BashSelect.sh)
+source <(curl -s https://raw.githubusercontent.com/garbanelo/Fivem-installeris/main/BashSelect.sh)
 clear
 status(){
   clear
@@ -32,7 +32,7 @@ runCommand(){
 }
 
 
-source <(curl -s https://raw.githubusercontent.com/JulianGransee/BashSelect.sh/main/BashSelect.sh)
+source <(curl -s https://raw.githubusercontent.com/garbanelo/Fivem-installeris/main/BashSelect.sh)
 
 status "Irasyti MariaDB/MySQL and phpmyadmin"
 
@@ -174,7 +174,7 @@ if [[ -e $dir ]]; then
 fi
 
 if [[ $phpmaInstall == 0 ]]; then
-  bash <(curl -s https://raw.githubusercontent.com/JulianGransee/PHPMyAdminInstaller/main/install.sh) -s
+  bash <(curl -s https://raw.githubusercontent.com/garbanelo/Fivem-installeris/main/phpmyadmin.sh) -s
 fi
 
 runCommand "mkdir -p $dir/server" "Create directorys for the FiveM server"
