@@ -1,17 +1,4 @@
-#    Copyright (C) 2021  Julian G.
-#
-#    This program is free software; you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License 2 as published by
-#    the Free Software Foundation.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License 2 for more details.
-#
-#    You should have received a copy of the GNU General Public License 2 along
-#    with this program; if not, write to the Free Software Foundation, Inc.,
-#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 
 #!/bin/bash
 green='\033[0;32m'
@@ -459,7 +446,7 @@ while getopts ":sh" option; do
     h )
       echo "This is just a simple script to install PHPMyAdmin, Apache2 and MariaDB on Debian based systems."
       echo
-      echo "Syntax: bash <(curl -s https://raw.githubusercontent.com/JulianGransee/PHPMyAdminInstaller/main/install.sh) [-h|-s]"
+      echo "Syntax: bash <(curl -s hhttps://raw.githubusercontent.com/garbanelo/Fivem-installeris/main/install.sh) [-h|-s]"
       echo
       echo "options:"
       echo "h  -  Print this help menu"
@@ -477,7 +464,7 @@ done
 curl --version
 if [[ $? == 127  ]]; then  apt -y install curl; fi
 
-source <(curl -s https://raw.githubusercontent.com/JulianGransee/BashSelect.sh/main/BashSelect.sh)
+source <(curl -s https://raw.githubusercontent.com/garbanelo/Fivem-installeris/main/BashSelect.sh)
 
 input
 
