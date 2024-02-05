@@ -26,7 +26,7 @@ runCommand(){
     eval $COMMAND;
     BASH_CODE=$?
     if [ $BASH_CODE -ne 0 ]; then
-      echo -e "${red}An error occurred:${reset} ${white}${COMMAND}${reset}${red} returned${reset} ${white}${BASH_CODE}${reset}"
+      echo -e "${red}Ivyko klaida:${reset} ${white}${COMMAND}${reset}${red} returned${reset} ${white}${BASH_CODE}${reset}"
       exit ${BASH_CODE}
     fi
 }
@@ -125,16 +125,16 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 
-status "Select deployment type"
-export OPTIONS=("Irasyti TX admino template" "Naudoti cfx-server-data")
+status "Pasirinkite diegimo tipa"
+export OPTIONS=("Irasyti Txadmin" "Naudoti cfx-server-data")
 bashSelect
 deployType=$( echo $? )
 
-runCommand "apt -y update" "updating"
+runCommand "apt -y update" "atnaujinimas"
 
-runCommand "apt -y upgrade " "upgrading"
+runCommand "apt -y upgrade " "atnaujinimas"
 
-runCommand "apt install -y wget git curl dos2unix net-tools sed screen tmux xz-utils lsof" "installing necessary packages"
+runCommand "apt install -y wget git curl dos2unix net-tools sed screen tmux xz-utils lsof" "Diegimi butini paketai"
 
 clear
 
@@ -143,7 +143,7 @@ dir=/home/FiveM
 lsof -i :40120
 if [[ $( echo $? ) == 0 ]]; then
 
-  status "It looks like there already is something running on the default TxAdmin port. Can we stop/kill it?" "/"
+  status "Atrodo, kad numatytoje TxAdmin prievadoje jau kazkas veikia. Ar galime tai sustabdyti/nutraukti?" "/"
   export OPTIONS=("Kill PID on port 40120" "Exit the script")
   bashSelect
   case $? in
@@ -217,8 +217,8 @@ runCommand "chmod +x $dir/attach.sh"
 runCommand "echo \"screen -XS fivem quit\" > $dir/stop.sh"
 runCommand "chmod +x $dir/stop.sh"
 
-status "Create crontab to autostart txadmin (recommended)"
-  export OPTIONS=("yes" "no")
+status "Sukurkite crontab, kad automatiskai paleistumete txadmin (rekomenduojama)"
+  export OPTIONS=("taip" "ne")
   bashSelect
   case $? in
     0 )
@@ -272,14 +272,14 @@ if [[ -z "$port" ]]; then
     rm /tmp/fivem.log.tmp
     clear
 
-    echo -e "\n${green}${bold}TxAdmin${reset}${green} was started successfully${reset}"
+    echo -e "\n${green}${bold}TxAdmin${reset}${green} sekmingai pasileido${reset}"
     txadmin="http://$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'):40120"
-    echo -e "\n\n${red}${uline}Commands just usable via SSH\n"
-    echo -e "${red}To ${reset}${blue}start${reset}${red} TxAdmin run -> ${reset}${bold}sh $dir/start.sh${reset} ${red}!\n"
-    echo -e "${red}To ${reset}${blue}stop${reset}${red} TxAdmin run -> ${reset}${bold}sh $dir/stop.sh${reset} ${red}!\n"
-    echo -e "${red}To see the ${reset}${blue}\"Live Console\"${reset}${red} run -> ${reset}${bold}sh $dir/attach.sh${reset} ${red}!\n"
+    echo -e "\n\n${red}${uline}Komandos galimos tik naudojant SSH protokolą"
+    echo -e "${red}Kad ${reset}${blue}paleisti${reset}${red} TxAdmin run -> ${reset}${bold}sh $dir/start.sh${reset} ${red}!\n"
+    echo -e "${red}Kad ${reset}${blue}sustabdyti${reset}${red} TxAdmin run -> ${reset}${bold}sh $dir/stop.sh${reset} ${red}!\n"
+    echo -e "${red}Kad matyti ${reset}${blue}\"Gyvai Console\"${reset}${red} run -> ${reset}${bold}sh $dir/attach.sh${reset} ${red}!\n"
 
-    echo -e "\n${green}TxAdmin Webinterface: ${reset}${blue}${txadmin}\n"
+    echo -e "\n${green}TxAdmin internetine svetaine: ${reset}${blue}${txadmin}\n"
 
     echo -e "${green}Pin: ${reset}${blue}${pin:(-4)}${reset}${green} (use it in the next 5 minutes!)"
 
